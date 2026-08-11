@@ -1,6 +1,8 @@
+<script setup lang="ts">
+import PageRenderer from '~/components/PageRenderer.vue'
+import {page} from '~/data/page'
+</script>
+
 <template>
-  <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
-  </div>
+  <PageRenderer :components="page.body" />
 </template>
