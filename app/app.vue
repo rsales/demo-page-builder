@@ -2,7 +2,12 @@
 import PageRenderer from '~/components/PageRenderer.vue'
 import { page } from '~/data/page'
 
-const { isEditor } = usePageBuilder()
+const { isEditor, pageData } = usePageBuilder()
+
+// iteration 07: prefer content received via page:load; fall back to the
+// static import when there's no CMS connection yet (direct access,
+// isEditor === false) — see docs/iterations/07-page-load.md.
+const components = computed(() => pageData.value?.components ?? page.body)
 </script>
 
 <template>
@@ -15,6 +20,6 @@ const { isEditor } = usePageBuilder()
       Preview Mode
     </span>
 
-    <PageRenderer :components="page.body" />
+    <PageRenderer :components="components" />
   </div>
 </template>
